@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <title>Health Logger App</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+
+    <div class="container-fluid p-5 bg-primary text-white text-center">
+      <h1>Health Logger App</h1>
+      <p>Welcome, You can Log Health Data :)</p>
+    </div>
+
+    <body>
+
+    <div class="container mt-3">
+      <h2>Menu</h2>
+      <p>Select an Option:</p>
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/logs">View Health Logs</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="container mt-3">
+      <h2>Add Health Data</h2>
+      <form action="/save" method="post">
+        <div class="mb-3 mt-3">
+          <label>Phone:</label>
+          <input type="text" class="form-control" id="phone" placeholder="Enter Phone Number" name="txtPhone">
+        </div>
+        <div class="mb-3">
+          <label>Weight:</label>
+          <input type="text" class="form-control" id="weight" placeholder="Enter Weight in Kgs" name="weight">
+        </div>
+        <div class="mb-3 mt-3">
+          <label>BP High:</label>
+          <input type="text" class="form-control" id="bphigh" placeholder="Enter BP High" name="bphigh">
+        </div>
+        <div class="mb-3">
+          <label>BP Low:</label>
+          <input type="text" class="form-control" id="bplow" placeholder="Enter BP Low" name="bplow">
+        </div>
+        <div class="mb-3">
+          <label>Sugar:</label>
+          <input type="text" class="form-control" id="sugar" placeholder="Enter Sugar Levels" name="sugar">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Health Data</button>
+      </form>
+    </div>
+
+    </body>
+</html>
