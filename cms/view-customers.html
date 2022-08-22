@@ -34,5 +34,44 @@
   </div>
 </div>
 
+<div class="container mt-3">
+  <h2>All Health Logs</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>CreatedOn</th>
+        <th>Remarks</th>
+        <th>Points</th>
+        <th>Type</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for row in result %}
+
+      <tr>
+        <td>{{row[0]}}</td>
+        <td>{{row[1]}}</td>
+        <td>{{row[2]}}</td>
+        <td>{{row[3]}}</td>
+        <td>{{row[4]}}</td>
+        <td>{{row[5]}}</td>
+        <td>{{row[6]}}</td>
+        <td>{{row[7]}}</td>
+        <td><a href="">Delete</a></td>
+        <td><a href="">Update</a></td>
+      </tr>
+
+      {% endfor %}
+
+    </tbody>
+  </table>
+</div>
+
 </body>
 </html>

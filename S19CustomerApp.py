@@ -39,7 +39,10 @@ def add():
 @app.route("/view")
 def view():
     # return "Welcome to CMS App"
-    return render_template("view-customers.html")
+    cref = Customer()
+    sql = cref.select_sql()
+    rows = db_helper.read(sql)
+    return render_template("view-customers.html", result=rows)
 
 
 @app.route("/save-customer", methods=["POST"])
