@@ -40,7 +40,7 @@ class Customer:
         return ""
 
     def delete_sql(self):
-        return "delete from Customer where cid = {}".format(self.id)
+        return "delete from Customer where id = {}".format(self.id)
 
     def select_sql(self):
         return "select * from Customer"

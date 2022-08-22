@@ -45,16 +45,36 @@ def view():
     return render_template("view-customers.html", result=rows)
 
 
+@app.route("/delete/<id>")
+def delete_customer_from_db(id):
+    cref = Customer(id=id)
+    sql = cref.delete_sql()
+    db_helper.write(sql)
+
+    return render_template("success.html", message="Customer with ID "+id+" Deleted Successfully..")
+
+
 @app.route("/save-customer", methods=["POST"])
 def save_customer_in_db():
     cref = Customer(name=request.form["name"],
                     phone=request.form["phone"],
                     email=request.form["email"],
                     remarks=request.form["remarks"])
+
+    if len(cref.name) == 0:
+        return render_template("error.html", message="Name cannot be Empty...")
+
     print(vars(cref))
     sql = cref.insert_sql()
     db_helper.write(sql)
-    return cref.name+" Inserted Successfully..."
+
+    # return cref.name+" Inserted Successfully..."
+    return render_template("success.html", message=cref.name+" Inserted Successfully...")
+
+
+@app.route("/update-customer")
+def update_customer():
+    return render_template("update-customer.html")
 
 
 def main():
