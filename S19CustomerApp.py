@@ -20,9 +20,11 @@
 from flask import *
 from S19Customer import Customer
 from S19DataBaseHelper import DataBaseHelper
+from Session21 import MongoDBHelper
 
 app = Flask("CustomerManagementApp", template_folder="cms")
 db_helper = DataBaseHelper()
+mongodb_helper = MongoDBHelper()
 
 @app.route("/")
 def index():
@@ -65,8 +67,11 @@ def save_customer_in_db():
         return render_template("error.html", message="Name cannot be Empty...")
 
     print(vars(cref))
-    sql = cref.insert_sql()
-    db_helper.write(sql)
+    customer_to_save = vars(cref)
+    mongodb_helper.insert(document=customer_to_save)
+
+    # sql = cref.insert_sql()
+    # db_helper.write(sql)
 
     # return cref.name+" Inserted Successfully..."
     return render_template("success.html", message=cref.name+" Inserted Successfully...")
