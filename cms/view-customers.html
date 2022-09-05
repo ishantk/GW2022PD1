@@ -39,14 +39,14 @@
   <table class="table">
     <thead>
       <tr>
-        <th>ID</th>
+<!--        <th>ID</th>-->
         <th>Name</th>
         <th>Phone</th>
         <th>Email</th>
-        <th>CreatedOn</th>
+<!--        <th>CreatedOn</th>-->
         <th>Remarks</th>
-        <th>Points</th>
-        <th>Type</th>
+<!--        <th>Points</th>-->
+<!--        <th>Type</th>-->
         <th>Actions</th>
       </tr>
     </thead>
@@ -54,17 +54,26 @@
 
       {% for row in result %}
 
-      <tr>
-        <td>{{row[0]}}</td>
-        <td>{{row[1]}}</td>
-        <td>{{row[2]}}</td>
-        <td>{{row[3]}}</td>
-        <td>{{row[4]}}</td>
-        <td>{{row[5]}}</td>
-        <td>{{row[6]}}</td>
-        <td>{{row[7]}}</td>
-        <td><a href="/delete/{{row[0]}}">Delete</a></td>
-        <td><a href="/update-customer">Update</a></td>
+<!--      <tr>-->
+<!--        <td>{{row[0]}}</td>-->
+<!--        <td>{{row[1]}}</td>-->
+<!--        <td>{{row[2]}}</td>-->
+<!--        <td>{{row[3]}}</td>-->
+<!--        <td>{{row[4]}}</td>-->
+<!--        <td>{{row[5]}}</td>-->
+<!--        <td>{{row[6]}}</td>-->
+<!--        <td>{{row[7]}}</td>-->
+<!--        <td><a href="/delete/{{row[0]}}">Delete</a></td>-->
+<!--        <td><a href="/update-customer/{{row[0]}}">Update</a></td>-->
+<!--      </tr>-->
+
+       <tr>
+        <td>{{row['name']}}</td>
+        <td>{{row['phone']}}</td>
+        <td>{{row['email']}}</td>
+        <td>{{row['remarks']}}</td>
+        <td><a href="/delete/{{row['phone']}}">Delete</a></td>
+        <td><a href="/update-customer/{{row['phone']}}">Update</a></td>
       </tr>
 
       {% endfor %}

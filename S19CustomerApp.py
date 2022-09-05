@@ -41,12 +41,16 @@ def add():
 @app.route("/view")
 def view():
     # return "Welcome to CMS App"
-    cref = Customer()
-    sql = cref.select_sql()
-    rows = db_helper.read(sql)
+    # cref = Customer()
+    # sql = cref.select_sql()
+    # rows = db_helper.read(sql)
+
+    rows = mongodb_helper.fetch()
+    print(rows, len(rows), type(rows))
+
     return render_template("view-customers.html", result=rows)
 
-
+"""
 @app.route("/delete/<id>")
 def delete_customer_from_db(id):
     cref = Customer(id=id)
@@ -54,6 +58,14 @@ def delete_customer_from_db(id):
     db_helper.write(sql)
 
     return render_template("success.html", message="Customer with ID "+id+" Deleted Successfully..")
+"""
+
+@app.route("/delete/<phone>")
+def delete_customer_from_db(phone):
+
+    query = {"phone": phone}
+    mongodb_helper.delete(query)
+    return render_template("success.html", message="Customer with Phone {} Deleted Successfully..".format(phone))
 
 
 @app.route("/save-customer", methods=["POST"])
@@ -67,6 +79,7 @@ def save_customer_in_db():
         return render_template("error.html", message="Name cannot be Empty...")
 
     print(vars(cref))
+    # Get the Dictionary of Object
     customer_to_save = vars(cref)
     mongodb_helper.insert(document=customer_to_save)
 
@@ -76,10 +89,39 @@ def save_customer_in_db():
     # return cref.name+" Inserted Successfully..."
     return render_template("success.html", message=cref.name+" Inserted Successfully...")
 
+"""
+@app.route("/update-customer/<id>")
+def update_customer(id):
+    cref = Customer(id=id)
+    sql = cref.select_sql_where()
+    rows = db_helper.read(sql)
+    return render_template("update-customer.html", row=rows[0])
+"""
 
-@app.route("/update-customer")
-def update_customer():
-    return render_template("update-customer.html")
+@app.route("/update-customer/<phone>")
+def update_customer(phone):
+    query = {"phone": phone}
+    document = mongodb_helper.fetch_selected(query)
+    return render_template("update-customer.html", row=document)
+
+
+@app.route("/update-customer-in-db", methods=["POST"])
+def update_customer_in_db():
+    cref = Customer(name=request.form["name"],
+                    phone=request.form["phone"],
+                    email=request.form["email"],
+                    remarks=request.form["remarks"])
+
+    if len(cref.name) == 0:
+        return render_template("error.html", message="Name cannot be Empty...")
+
+    print(vars(cref))
+    # Get the Dictionary of Object
+    query = {"phone": cref.phone}
+    customer_to_update = vars(cref)
+    mongodb_helper.update(customer_to_update, query)
+
+    return render_template("success.html", message=cref.name + " Updated Successfully...")
 
 
 def main():

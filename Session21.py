@@ -27,14 +27,27 @@ class MongoDBHelper:
         print("Inserted Data:", result.inserted_id)
 
     def fetch(self):
+        rows = []
         documents = self.collection.find()
+        print(documents, type(documents))
         for document in documents:
             print(document, type(document))
+            rows.append(document)
+        # list of dictionary
+        return rows
 
     def fetch_selected(self, query):
+        rows = []
         documents = self.collection.find(query)
+        print(documents, type(documents))
         for document in documents:
-            print(document)
+            print(document, type(document))
+            rows.append(document)
+
+        # list of dictionary
+        return rows[0]
+
+
 
     def delete(self, query):
         result = self.collection.delete_one(query)
@@ -62,11 +75,11 @@ def main():
         }
     ]
 
-    customer_dictionary = vars(customer1)
-    print(customer_dictionary, type(customer_dictionary))
-
-    db_helper.insert(document=customer_dictionary)
-    # db_helper.fetch()
+    # customer_dictionary = vars(customer1)
+    # print(customer_dictionary, type(customer_dictionary))
+    #
+    # db_helper.insert(document=customer_dictionary)
+    db_helper.fetch()
 
     # query = {"phone": "9999955555"}
     # db_helper.fetch_selected(query)

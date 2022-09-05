@@ -21,7 +21,7 @@
 class Customer:
 
     # Constructor
-    def __init__(self, id=None, name=None, phone=None, email=None, created_on=None, remarks=None, points=None, type=None):
+    def __init__(self, id=None, name=None, phone=None, email=None, created_on=None, remarks=None, points=100, type=1):
         self.id = id
         self.name = name
         self.phone = phone
@@ -44,6 +44,9 @@ class Customer:
 
     def select_sql(self):
         return "select * from Customer"
+
+    def select_sql_where(self):
+        return "select * from Customer where id = {}".format(self.id)
 
 
 c1 = Customer()

@@ -17,25 +17,25 @@
     <p>Update Customer</p>
   </div>
 
-    <form action="/save-customer" method="post">
+    <form action="/update-customer-in-db" method="post">
       <div class="mb-3 mt-3">
         <label class="form-label">Name:</label>
-        <input type="text" class="form-control" id="name" value="John" placeholder="Enter Customer Name" name="name">
+        <input type="text" class="form-control" id="name" value="{{row['name']}}" placeholder="Enter Customer Name" name="name">
       </div>
 
-        <div class="mb-3 mt-3">
+      <div class="mb-3 mt-3">
         <label class="form-label">Phone:</label>
-        <input type="text" class="form-control" id="phone" value="9999911111" placeholder="Enter Customer Phone" name="phone">
+        <input type="text" class="form-control" id="phone" value="{{row['phone']}}" placeholder="Enter Customer Phone" name="phone">
       </div>
 
         <div class="mb-3 mt-3">
         <label class="form-label">Email:</label>
-        <input type="text" class="form-control" id="email" value="john@example.com" placeholder="Enter Customer Email" name="email">
+        <input type="text" class="form-control" id="email" value="{{row['email']}}" placeholder="Enter Customer Email" name="email">
       </div>
 
         <div class="mb-3 mt-3">
         <label class="form-label">Remarks:</label>
-            <textarea class="form-control" id="remarks"  value="John is Awesome" placeholder="Enter Customer Remarks" name="remarks"></textarea>
+            <textarea class="form-control" id="remarks" placeholder="Enter Customer Remarks" name="remarks">{{row['remarks']}}</textarea>
       </div>
 
     <button type="submit" class="btn btn-primary">UPDATE</button>
